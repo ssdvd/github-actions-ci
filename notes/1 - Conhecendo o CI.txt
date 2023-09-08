@@ -1,2 +1,48 @@
 Conhecendo a aplicacao:
 
+iremos ficar de olho no repositorio do app, iremos executar os teste que foram 
+escritos e baixar a aplicaoca e rodas os testes. Assim evitando que a aplicacao
+quebre apos alguma atualizacao, identificando o erro de imediato, antes de ir
+para prod.
+
+Assim criando uma rotina, para que toda vez que atualizar o app, rodar todos esses
+teste de maneira automatica. Para isso iremos utilizar um app disponibilizado pelo
+o curso, qual e feita em go e os testes tambem sao feitos em go.
+
+nesse projeto a um docker-compose, onde ira subir um container com o postgree como
+db junto com as variaveis de ambiente, como user, password e db, liberando a porta
+5432:5432 para a aplicacao, utilizando um volume para manter os arquivos.
+
+e outro container com o pgadmion, que e uma ferramenta que ira auxiliar para a melhor
+visualizacao do banco de dados do postgree, tambem contem variaveis de ambiente,
+essas serao email e password, liberando a porta 54321:80, qual estara dependendo do
+container do postgree para subir.
+
+Entao as ferramentas necessaria para realizar o curso sao:
+
+go
+docker 
+docker compose 
+git 
+github
+github actions
+
+Subindo o projeto:
+
+para subirmos o projeto, devemos antes subir os containers que estao no arquivo 
+docker-compose na pasta projeto-go-testes docker-compose.yml com o comando:
+
+docker compose up -d 
+
+esse comando devera ser executado na pasta onde se encontra o arquivo. Assim
+o container ira rodar em segundo plano com o parametro -d. Feito isso nosso banco
+de dados estara disponivel para ser usado.
+
+E para subir nossa aplicacao devemos executar o seguinte comando:
+
+go run main.go
+
+feito isso, nossa aplicacao estara disponivel para acessar via navegador, e o endereco
+que pode ser usado e o localhost:8080, assim ja podemos ver o app no ar. E caso 
+queira acessar a api desse app, podemos ir direto no endereco localhost:8080/leo
+assim veremos essa api respondendo corretamente.
