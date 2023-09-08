@@ -46,3 +46,15 @@ feito isso, nossa aplicacao estara disponivel para acessar via navegador, e o en
 que pode ser usado e o localhost:8080, assim ja podemos ver o app no ar. E caso 
 queira acessar a api desse app, podemos ir direto no endereco localhost:8080/leo
 assim veremos essa api respondendo corretamente.
+
+Nessa aula, você aprendeu como:
+Ver o que será necessário para executar a aplicação, sendo que no nosso caso é 
+necessário o Docker e o Go, sendo o Docker para o nosso banco de dados e o Go para 
+gerir a aplicação;
+
+Subir o banco de dados da aplicação através do docker compose, e automatizar assim 
+parte da tarefa, ao invés de ter que lembrar e executar o comando padrão do Docker;
+
+Corrigir um problema que se encontrava no docker compose, que estava com complicações 
+nos volumes, onde os arquivos são armazenados, permitindo assim que o banco de dados 
+possa ser executado;
