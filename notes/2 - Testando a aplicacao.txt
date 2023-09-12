@@ -28,3 +28,31 @@ esses processos de subir o container, subir o app e rodar os testes.
 
 Github Actions:
 
+o GitHub Actions, sera a ferramenta da qual iremos utilizar para buildar, testar e 
+realizar o deploy do app e para isso a propria ferramenta nos recomenda utilizar a
+configuracao go para as rotinas de CI, pois foi detectada essa linguagem no 
+repositorio. Visto isso podemos partir para a configuracao.
+
+Rotina de CI:
+
+Ao selecionarmos a opcao sugerida do github, ele ja nos traz um arquivo yml pre 
+configurado com algumas tasks padroes que sao utilizadas naquela linguagem, assim
+vc podendo ou nao mudar alguma linha de cod, caso realmente seja necessario. E ao 
+selecionar essa, basta realizar o commit atraves do github com esse arquivo yml 
+que o github actions se encarregara de buildar, testar e deployar o app. E para 
+configurarmos a rotina, iremos para a proxima aula.
+
+Nessa aula, você aprendeu como:
+
+Executar os testes automatizados para o Go, e por meio disso verificar se existem 
+problemas de lógica na aplicação, para que sejam corrigidos;
+
+Executar os testes de forma verbosa, para que assim seja possível ver todos os testes 
+que estão sendo executados e como estão sendo executados. Assim podemos ver se algum 
+deles retornou um erro;
+
+Acessar o Github Actions, para que possamos começar a criar as rotinas de integração 
+contínua;
+
+Criar a sua primeira rotina de CI, utilizando a rotina sugerida pelo Actions, e assim 
+permitir que apenas poucas linhas sejam alteradas.
