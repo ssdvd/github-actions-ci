@@ -1,0 +1,30 @@
+testes automatizados:
+
+essa parte, foi basicamente mostrando como utilizar o modo de teste do go, junto 
+com essa aplicacao onde primeiro temos que subir todos os requisitos para depois 
+executarmos os teste. Neste caso deviamos primeiro executar o comando:
+
+docker compose up -d
+
+dentro da pasta do app ha um arquivo docker compose, no qual a aplicacao se basea 
+para o seu funcionamento, entao esse comando executa esse arquivo subindo toda a
+infra necessaria para o funcionamento. Com os container funcionando corretamente
+podemos iniciar nossa aplicacao com o comando:
+
+go run main.go
+
+esse comando ira iniciar o app, para que assim possa ser possivel realizar os testes
+que se encontram no arquivo main_test.go, para validar as funcionalidades do app e
+para isso executamos o seguinte comando:
+
+go test -v main_test.go
+
+esse comando executa o modulo de teste da linguagem go, e o parametro -v ira detalhar
+todo o passo a passo do testes executados, printando os resultado no nosso terminal.
+
+E para facilicar nossa vida, em vez de realizar todo esse processo, a cada vez que 
+alguem fizer uma alteracao no app. Iremos utilizar o github actions para automatizar
+esses processos de subir o container, subir o app e rodar os testes.
+
+Github Actions:
+
