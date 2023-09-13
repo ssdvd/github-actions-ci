@@ -22,7 +22,7 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v projeto-go-testes/main.go
+      run: go build -v main.go
 
     - name: build-db
       run: docker-compose build
@@ -31,4 +31,4 @@ jobs:
       run: docker-compose up -d
 
     - name: Test
-      run: go test -v projeto-go-testes/main_test.go
+      run: go test -v main_test.go
