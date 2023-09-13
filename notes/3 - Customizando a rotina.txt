@@ -1,0 +1,100 @@
+entendendo o job inicial:
+
+quando a gente cria a rotina atraves do recomendado pelo o github actions, a rotina
+ja vem com alguns jobs/tarefas padroes que serao executadas, e para entender esses 
+jobs iremos descrever cada job, comecando com:
+
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+aqui estamos informando que essa rotina ira acontecer a cada push ou pull_request,
+assim ira executar os jobs descritos no decorrer do arquivo.
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+aqui estamos dizendo que iremos trabalhar com a ultima versao do ubuntu, e que iremos
+utilizar o repositorio actions/checkout@v3, isso ira permitir que usamos as funcoes
+do github actions dentro da nossa maquina, e aqui:
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+aqui estamos dizendo que iremos utilizar a linguagem go para realizar a rotina, entao
+com esse trecho de codigo, em name estamos nomeado esse job, em uses estamos dizendo
+que iremos utilizar o go, entao o mesmo ira fazer toda a preparacao para que isso seja
+possivel. E em with, estamos sinalizando com qual versao do go que iremos trabalhar.
+no techo a seguir:
+
+    - name: Build
+      run: go build -v ./...
+
+aqui ja estamos utilizando o go, e mandando executar o comando go build -v ./... 
+em run:, esse comando ira buildar nosso app.
+
+    - name: Test
+      run: go test -v ./...
+
+ja aqui, e o mesmo principil do job anterior, so que em vez de buildar, iremos rodar
+os nossos testes no qual foi definido em main_test.go
+
+Configurando a rotina:
+
+e para configurar nossa rotina para que se adapte com o nosso projeto, devemos primeiro
+modificar o seguinte bloco de cod para:
+
+    - name: Build
+      run: go build -v projeto-go-testes/main.go
+
+    - name: Test
+      run: go test -v projeto-go-testes/main_test.go
+
+
+assim, iremos conseguir com que o job consiga concluir de maneira correta e utilizando
+o que precisamos para rodar o nosso app. Aqui nao precisamos navegar entre as pastas
+do nosso repositorio, pois quando estamos utilizando o github actions e mesmo copia o 
+nosso diretorio para um tipo de WORKDIR, e todo o nosso repo estara localizado la. Mas 
+como nosso repo tem a pasta projeto-go-testes, entao devemos utilizar a navegacao.
+
+Configurando o banco:
+
+para que nossa rotina funcione, antes precisamos configurar o banco para que ai sim
+o nosso app possa funcionar de maneira correta e poderemos validar todo esse processo
+de rotina. e para isso devemos inserir o seguinte bloco de cod entre o build e o test:
+
+    - name: build-db
+      run: docker-compose build
+
+como nosso db foi configurado como um container, podemos utilizar o docker que ja se
+encontra nativo na versao utilizada pelo github actions, aqui iremos rodar o comando
+docker-compose build para caso seja necessario baixar alguma imagem que ele nao tenha
+
+
+    - name: create-db
+      run: docker-compose up -d
+
+e aqui ira rodar o nosso docker-compose up -d, assim subindo os nossos dois containers
+que configuramos dentro do arquivo docker-compose.yml e em segundo plano, estamos utilizando
+o paramentro -d para assim a rotina nao fique travada por conta do terminal do ubuntu 
+ficar no processo do container.
+
+Nessa aula, você aprendeu:
+Quais são os principais campos dos jobs, tendo o runs-on para escolher o sistema, 
+steps em conjunto com run para executar códigos e name para nomear cada passo;
+
+Como executar códigos dentro da rotina de CI, para que assim possamos preparar o 
+ambiente e rodar os testes da aplicação, garantindo a lógica dela;
+
+Iniciar um container Docker usando o docker-compose up dentro de uma pipeline, e 
+com isso conseguimos facilitar a configuração do ambiente.
