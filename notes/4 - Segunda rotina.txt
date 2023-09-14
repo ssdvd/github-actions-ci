@@ -60,3 +60,11 @@ testes, ja no seguinte bloco de cod:
 
 podemos ver que criamos uma rotina para somente executar o build se a rotina de testes
 for concluida sem nenhum erro, vemos isso atravers do parametro needs.
+
+Visualizando erros:
+
+quando realizando um push atravados do git, o github actions iniciara o com a rotina
+que montamos, e na aba action dentro do repositorio do nosso app, ao clicarmos podemos
+ver a execucao da rotina acontecendo, e clicando em cima do nome da rotina podemos
+ver o passo a passo e o a descricao de cada um, assim quando ocasionar de algum erro
+acontencer podemos ler a descricao e saber do que se trata.
