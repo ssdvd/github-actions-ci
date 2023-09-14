@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -25,13 +25,19 @@ jobs:
       run: go env -w GO111MODULE=off
 
     - name: build-db
-      run: cd projeto-go-testes/ && docker-compose build
+      run: docker-compose build
 
     - name: create-db
-      run: cd projeto-go-testes/ && docker-compose up -d
+      run: docker-compose up -d
 
     - name: Test
-      run: go test -v projeto-go-testes/main_test.go
+      run: go test -v main_test.go
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
 
     - name: Build
-      run: go build -v projeto-go-testes/main.go
+      run: go build -v main.go

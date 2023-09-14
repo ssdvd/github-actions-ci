@@ -4,3 +4,59 @@ podemos alterar a ordem da rotina, para que o build do app, que e a parte que ma
 demora dentro do github, seja executado por ultima, assim podendo executar os passos
 mais rapido e core em primeiro para depois realizar o build, e para isso, iremos
 colocar o step de build em ultimo lugar dentro os steps ja existentes.
+
+Separando as rotinas:
+
+podemos realizar o seguinte para separar as rotinas, onde uma ira testar o app 
+e a segunda ira build o app, da seguinte forma:
+
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: env off
+      run: go env -w GO111MODULE=off
+
+    - name: build-db
+      run: cd projeto-go-testes/ && docker-compose build
+
+    - name: create-db
+      run: cd projeto-go-testes/ && docker-compose up -d
+
+    - name: Test
+      run: go test -v projeto-go-testes/main_test.go
+
+nesse trecho podemos ver que criamos um job onde, iremos testar nosso app subindo
+junto o arquivo docker-compose com os seus containers necessarios para a execucao dos
+testes, ja no seguinte bloco de cod:
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build
+      run: go build -v projeto-go-testes/main.go
+
+podemos ver que criamos uma rotina para somente executar o build se a rotina de testes
+for concluida sem nenhum erro, vemos isso atravers do parametro needs.
