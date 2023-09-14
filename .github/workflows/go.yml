@@ -28,7 +28,7 @@ jobs:
       run: cd projeto-go-testes/ && docker-compose build
 
     - name: create-db
-      run: docker-compose up -d
+      run: cd projeto-go-testes/ && docker-compose up -d
 
     - name: Test
       run: go test -v projeto-go-testes/main_test.go
