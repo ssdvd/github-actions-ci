@@ -68,3 +68,18 @@ que montamos, e na aba action dentro do repositorio do nosso app, ao clicarmos p
 ver a execucao da rotina acontecendo, e clicando em cima do nome da rotina podemos
 ver o passo a passo e o a descricao de cada um, assim quando ocasionar de algum erro
 acontencer podemos ler a descricao e saber do que se trata.
+
+Nessa aula, você aprendeu como:
+
+Alterar a ordem de execução de comandos dentro de cada job, tornando-os mais rápidos, 
+como no caso dos testes e a compilação, nos quais não é necessário gastar tempo com a 
+compilação se os testes falharem;
+
+Criar um segundo job, o que permite o separar melhor cada função dentro da rotina, 
+facilitando a identificação de problemas e a manutenção a longo prazo;
+
+Visualizar as rotinas no Github Actions, e verificar se ocorreu algum erro e acessar 
+os logs de execução;
+
+Forçar um erro, podendo assim entender o que ocorre se for encontrado isso na 
+aplicação e como esse erro é mostrado para que acessa o repositório.
