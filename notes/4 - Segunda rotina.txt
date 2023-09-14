@@ -1,0 +1,6 @@
+Alterando a ordem:
+
+podemos alterar a ordem da rotina, para que o build do app, que e a parte que mais
+demora dentro do github, seja executado por ultima, assim podendo executar os passos
+mais rapido e core em primeiro para depois realizar o build, e para isso, iremos
+colocar o step de build em ultimo lugar dentro os steps ja existentes.
