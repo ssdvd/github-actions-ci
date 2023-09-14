@@ -25,7 +25,7 @@ jobs:
       run: go env -w GO111MODULE=off
 
     - name: build-db
-      run: docker-compose build
+      run: cd projeto-go-testes/ && docker-compose build
 
     - name: create-db
       run: docker-compose up -d
