@@ -1,0 +1,60 @@
+Estrategia de matrizes:
+
+e possivel costumizar quando realizar a rotina, e isso fazemos no seguinte trecho de
+cod:
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+aqui podemos definir quando que a rotina sera executada, e aqui estamos definido que
+sera executada toda vez que houver um push ou um pull_request. Mas tambem e possivel
+realizar o agendamento dessa rotina, que e mais usado em casos em especificos. e tambem
+temos a maneira manual, onde apos realizarmos algum push, fica disponivel um botao
+para executar a rotina.
+
+Podemos trabalhar com matrizes, onde podemos selecionar mais de um sistema operacional,
+versoes do mesmo, assim como das linguagens e versoes disponiveis dela, tudo isso com
+o seguinte trecho de cod:
+
+test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go_version: ['1.20', '1.19', '1.18']
+    steps:
+    - uses: actions/checkout@v3
+
+aqui podemos ver que dentro de uma matriz, estamos definindo as versoes que podem ser
+utilizadas e para validar essas versoes, teremos que adicionar o seguinte no cod:
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '${{ matrix.go_version }}'
+
+
+em go-version, estamos mostrando que estaremos utilizando a matriz que criamos
+anteriormente, para as versoes do go. e para fazer a mesma coisa so que com as versoes
+de sistemas operacionais, devemos:
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        go_version: ['1.20', '1.19', '>=1.18']
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '${{ matrix.go_version }}'
+
+
+aqui podemos ver que criamos uma nova matriz, so que agora de sistemas operacionais,
+onde iremos testar com os ambientes, windows, linux e macos.
+
