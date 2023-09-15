@@ -58,3 +58,39 @@ de sistemas operacionais, devemos:
 aqui podemos ver que criamos uma nova matriz, so que agora de sistemas operacionais,
 onde iremos testar com os ambientes, windows, linux e macos.
 
+variaveis e segredos:
+
+em vez de inserimos nossa chaves de autenticacoes dentro dos nossos repositorios, ou
+entao nossas variaveis de ambiente no codigo tambem, o github actions tem a funcao de
+variaveis e segredos, onde podemos inserir esse valor la e poder chamar essa variavel
+ou segredo a partir de uma valor de argumento, assim tendo maior seguranca e privacidade
+no repo.
+
+e para criar uma variavel ou segredo, temos que ir nas configuracoes do repositorio
+na opcao de secrets and variables, opcao actions e nessa opcao ira mostrar as opcoes
+para criar os segredos de ambiente ou repositorio, ou, variaveis de ambiente ou repositorio
+tornando assim mais seguro.
+
+e para utiliza-los, iremos fazer de maneira parecido com qual ja fizemos enquanto criavamos
+nossa matriz para utilizar versoes diferentes do go e de sistemas operacionais, com 
+a linha de cod:
+
+${{ secrets.nome-segredo-variavel }}
+
+no valor da chave com qual queremos atribuir o valor da secret ou variavel. execucao
+
+aws_access_key = ${{ secrets.aws-key }}
+
+assim a key de autenticacao da aws ficara segura e nao ficara exposta no codigo.
+Nunca faça um echo das chaves e senhas, e não coloque-as diretamente no código.
+
+Nessa aula, você aprendeu como:
+
+Trabalhar com estratégias de matrizes, o que possibilita a criação de vários ambientes 
+de desenvolvimento diferentes com pouco código, deixando a rotina mais organizada;
+
+Criar e utilizar variáveis, como a go_version dentro da estratégia de matriz,o que 
+possibilita guardar múltiplos valores para usarmos posteriormente;
+
+Utilizar o secrets, e criar assim um ambiente, colocando um segredo dentro dele, 
+possibilitando o seu uso dentro da rotina, porém sem compartilhar seu valor.
